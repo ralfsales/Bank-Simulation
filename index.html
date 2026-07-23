@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Interactive banking demo with branches, customers, deposits and withdrawals.">
-    <title>Ledger — Banking System Demo</title>
+    <title>Ledger : Banking System Demo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -63,7 +63,7 @@
         </section>
 
         <section class="project-note">
-            <div><p class="eyebrow">Under the hood</p><h2>Built from a Java OOP exercise</h2></div>
+            <div><p class="eyebrow">Under the hood</p><h2>Built from a Java OOP personal project</h2></div>
             <p>A <code>Bank</code> contains <code>Branch</code> objects, each holding <code>Customer</code> accounts and transactions. Positive amounts add money; negative amounts represent withdrawals or payments.</p>
         </section>
     </main>
@@ -96,7 +96,7 @@
             <p class="context">Updating <strong id="transaction-customer"></strong></p>
             <label for="transaction-amount">Amount (€)</label>
             <input id="transaction-amount" type="number" step="0.01" placeholder="50.00 or -25.00" required>
-            <p class="hint">Positive = deposit · Negative = withdrawal or payment</p>
+            <p class="hint">Deposits, withdrawals or payments</p>
             <p class="error" id="transaction-error"></p>
             <button class="button primary full">Record transaction</button>
         </form>
