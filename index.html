@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Interactive banking demo with branches, customers, deposits and withdrawals.">
+    <title>Ledger — Banking System Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <header>
+        <a class="brand" href="#"><span class="brand-mark">L</span> Ledger</a>
+        <span class="local-status"><i></i> Local demo</span>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div>
+                <p class="eyebrow">Banking system project</p>
+                <h1>Simple banking,<br><em>clearly organised.</em></h1>
+                <p class="intro">Create branches, add customers and record money moving in or out in an interactive demonstration of the Java project.</p>
+            </div>
+            <div class="hero-actions">
+                <button class="button primary" data-open-branch>＋ New branch</button>
+                <button class="button secondary" id="reset-demo">Reset demo</button>
+            </div>
+        </section>
+
+        <section class="metrics" aria-label="Bank summary">
+            <article><span>Total balance</span><strong id="total-balance">€0.00</strong><small>Across all accounts</small></article>
+            <article><span>Customers</span><strong id="customer-count">0</strong><small>Across every branch</small></article>
+            <article><span>Branches</span><strong id="branch-count">0</strong><small>Active locations</small></article>
+        </section>
+
+        <section class="workspace">
+            <aside>
+                <div class="heading">
+                    <div><p class="eyebrow">Directory</p><h2>Branches</h2></div>
+                    <button class="round-button" data-open-branch aria-label="Add branch">＋</button>
+                </div>
+                <nav id="branch-list" aria-label="Bank branches"></nav>
+            </aside>
+
+            <section class="customers">
+                <div class="heading customer-heading">
+                    <div><p class="eyebrow">Selected branch</p><h2 id="branch-title">Choose a branch</h2></div>
+                    <button class="button primary" id="add-customer">＋ Add customer</button>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Customer</th><th>Transactions</th><th>Balance</th><th>Actions</th></tr></thead>
+                        <tbody id="customer-list"></tbody>
+                    </table>
+                    <div id="empty-state" class="empty-state">
+                        <div>◎</div><h3>No customers yet</h3><p>Add the first customer to this branch.</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section class="project-note">
+            <div><p class="eyebrow">Under the hood</p><h2>Built from a Java OOP exercise</h2></div>
+            <p>A <code>Bank</code> contains <code>Branch</code> objects, each holding <code>Customer</code> accounts and transactions. Positive amounts add money; negative amounts represent withdrawals or payments.</p>
+        </section>
+    </main>
+
+    <dialog id="branch-modal">
+        <form id="branch-form">
+            <div class="modal-heading"><div><p class="eyebrow">New location</p><h2>Add a branch</h2></div><button class="close" type="button">×</button></div>
+            <label for="branch-name">Branch name</label>
+            <input id="branch-name" maxlength="40" placeholder="e.g. Dublin Central" required>
+            <p class="error" id="branch-error"></p>
+            <button class="button primary full">Create branch</button>
+        </form>
+    </dialog>
+
+    <dialog id="customer-modal">
+        <form id="customer-form">
+            <div class="modal-heading"><div><p class="eyebrow">New account</p><h2>Add a customer</h2></div><button class="close" type="button">×</button></div>
+            <label for="customer-name">Customer name</label>
+            <input id="customer-name" maxlength="50" placeholder="e.g. Alex Morgan" required>
+            <label for="initial-balance">Initial deposit (€)</label>
+            <input id="initial-balance" type="number" min="0.01" step="0.01" placeholder="100.00" required>
+            <p class="error" id="customer-error"></p>
+            <button class="button primary full">Add customer</button>
+        </form>
+    </dialog>
+
+    <dialog id="transaction-modal">
+        <form id="transaction-form">
+            <div class="modal-heading"><div><p class="eyebrow">Money movement</p><h2>Add a transaction</h2></div><button class="close" type="button">×</button></div>
+            <p class="context">Updating <strong id="transaction-customer"></strong></p>
+            <label for="transaction-amount">Amount (€)</label>
+            <input id="transaction-amount" type="number" step="0.01" placeholder="50.00 or -25.00" required>
+            <p class="hint">Positive = deposit · Negative = withdrawal or payment</p>
+            <p class="error" id="transaction-error"></p>
+            <button class="button primary full">Record transaction</button>
+        </form>
+    </dialog>
+
+    <dialog id="history-modal">
+        <div class="modal-heading"><div><p class="eyebrow">Transaction history</p><h2 id="history-customer"></h2></div><button class="close" type="button">×</button></div>
+        <div id="history-list"></div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
